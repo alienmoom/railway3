@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaunaFlora | Explore the Animal World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #2b2d42;
+            background-color: #f7f9f7;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            color: #2d6a4f;
+            font-size: 28px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1b4332;
+        }
+        
+        .logo-text span {
+            color: #d97706;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #40916c;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d97706;
+        }
+        
+        .cta-button {
+            background-color: #2d6a4f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            background-color: #1b4332;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1b4332;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f7f9f7 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #1b4332;
+        }
+        
+        .hero-text h1 span {
+            color: #d97706;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: #2d6a4f;
+            border: 2px solid #2d6a4f;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: #e8f5e9;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+        }
+        
+        /* Habitats Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #1b4332;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .habitats {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .habitats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .habitat-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .habitat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .habitat-icon {
+            background-color: #e8f5e9;
+            color: #2d6a4f;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .habitat-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .habitat-card p {
+            color: #555;
+        }
+        
+        /* Adaptations Section */
+        .adaptations {
+            padding: 100px 0;
+            background-color: #e8f5e9;
+        }
+        
+        .adaptations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .adaptation-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .adaptation-icon {
+            color: #d97706;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .adaptation-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .adaptation-item p {
+            color: #555;
+        }
+        
+        /* Voices of Conservation */
+        .voices {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .voice-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: #f7f9f7;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #444;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #d8f3dc;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2d6a4f;
+            font-size: 24px;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #1b4332;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Membership/Support Section */
+        .membership {
+            padding: 100px 0;
+            background-color: #f7f9f7;
+        }
+        
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .membership-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .membership-card.featured {
+            border-top: 5px solid #2d6a4f;
+            transform: scale(1.05);
+            position: relative;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d6a4f;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .membership-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .membership-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .plan-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2d6a4f;
+            margin-bottom: 20px;
+        }
+        
+        .plan-price span {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-section .cta-button {
+            background-color: white;
+            color: #2d6a4f;
+            font-size: 16px;
+            padding: 15px 40px;
+        }
+        
+        .cta-section .cta-button:hover {
+            background-color: #e8f5e9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1b4332;
+            color: #b7e4c7;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #b7e4c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #d97706;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #40916c;
+            font-size: 14px;
+            color: #95d5b2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+            
+            .membership-card.featured {
+                transform: none;
+            }
+            
+            .membership-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 130px 0 80px;
+            }
+            
+            .habitats, .adaptations, .voices, .membership, .cta-section {
+                padding: 70px 0;
+            }
+            
+            .habitat-card, .testimonial {
+                padding: 25px;
+            }
+            
+            .plan-price {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-paw"></i></div>
+                    <div class="logo-text">Fauna<span>Flora</span></div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#habitats">Habitats</a></li>
+                    <li><a href="#adaptations">Adaptations</a></li>
+                    <li><a href="#voices">Voices</a></li>
+                    <li><a href="#membership">Support Us</a></li>
+                    <li><a href="#">Expeditions</a></li>
+                </ul>
+                
+                <button class="cta-button">Join Us</button>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Explore the Wonders of the <span>Animal Kingdom</span></h1>
+                    <p>Embark on a visual and educational journey through Earth's most breathtaking wilderness. Learn about diverse species, key conservation efforts, and the delicate ecosystems that sustain life on our planet.</p>
+                    <div class="hero-buttons">
+                        <button class="cta-button">Start Exploring</button>
+                        <button class="secondary-button">Watch Documentary</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Majestic Male Lion in Savanna">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habitats Section -->
+    <section class="habitats" id="habitats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Earth's Breathtaking Habitats</h2>
+                <p>Discover the spectacular landscapes that diverse animal species call home, and observe how they evolve to thrive in their environments.</p>
+            </div>
+            
+            <div class="habitats-grid">
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Tropical Rainforests</h3>
+                    <p>Covering only 6% of Earth's land, these dense, vibrant jungles house more than half of the world's terrestrial species.</p>
+                </div>
+                
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>The Deep Oceans</h3>
+                    <p>From shallow coral reefs to abyssal zones, the oceans shelter unique marine life forms, giants, and bioluminescent species.</p>
+                </div>
+                
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Arid Deserts</h3>
+                    <p>A testament to survival, desert creatures have developed highly specialized behaviors to endure extreme temperatures and water scarcity.</p>
+                </div>
+                
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>Polar Regions</h3>
+                    <p>The icy expanses of the Arctic and Antarctic support remarkable predators, insulated marine mammals, and seasonal migrations.</p>
+                </div>
+                
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>African Savannas</h3>
+                    <p>Characterized by vast grasslands and scattered trees, the savanna plays host to some of the largest land mammal migrations on Earth.</p>
+                </div>
+                
+                <div class="habitat-card">
+                    <div class="habitat-icon">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h3>Mountainous Heights</h3>
+                    <p>Alpine heights demand rugged adaptations from species dealing with thin oxygen layers, steep cliffs, and sudden weather shifts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adaptations Section -->
+    <section class="adaptations" id="adaptations">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fascinating Evolutionary Adaptations</h2>
+                <p>Millions of years of evolution have equipped wildlife with ingenious mechanics to survive, communicate, and hunt.</p>
+            </div>
+            
+            <div class="adaptations-grid">
+                <div class="adaptation-item">
+                    <div class="adaptation-icon">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h3>Camouflage</h3>
+                    <p>Blending seamlessly into background environments to evade predators or patiently stalk unsuspecting prey.</p>
+                </div>
+                
+                <div class="adaptation-item">
+                    <div class="adaptation-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>Echolocation</h3>
+                    <p>Emitting high-frequency sound waves to navigate pitch-black caves or deep oceans with spatial precision.</p>
+                </div>
+                
+                <div class="adaptation-item">
+                    <div class="adaptation-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Symbiosis</h3>
+                    <p>Establishing cooperative, mutually beneficial relationships between completely different species in an ecosystem.</p>
+                </div>
+                
+                <div class="adaptation-item">
+                    <div class="adaptation-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Great Migrations</h3>
+                    <p>Journeying thousands of miles across challenging terrains each season in pursuit of food, warmth, and breeding grounds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voices of Conservation -->
+    <section class="voices" id="voices">
+        <div class="container">
+            <div class="section-title">
+                <h2>Voices of Wildlife Advocates</h2>
+                <p>Hear from biologists, photographers, and field rangers who dedicate their lives to protecting global biodiversity.</p>
+            </div>
+            
+            <div class="voice-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Protecting wildlife is not merely an ethical duty; it is essential to keeping Earth's complex ecological systems balanced. When we lose a species, we lose a thread in the fabric of life."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JR</div>
+                        <div class="author-info">
+                            <h4>Dr. Jonathan Reed</h4>
+                            <p>Wildlife Ecologist, EarthTrust</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership/Support Section -->
+    <section class="membership" id="membership">
+        <div class="container">
+            <div class="section-title">
+                <h2>Support Conservation Efforts</h2>
+                <p>Choose an alliance tier to directly fund habitat preservation, anti-poaching patrols, and scientific research.</p>
+            </div>
+            
+            <div class="membership-grid">
+                <div class="membership-card">
+                    <h3 class="plan-name">Explorer</h3>
+                    <div class="plan-price">$15<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Monthly digital wildlife digest</li>
+                        <li>High-res wildlife desktop wallpapers</li>
+                        <li>Detailed species fact sheets</li>
+                        <li>Virtual adoption certificate</li>
+                        <li>Project voting rights</li>
+                    </ul>
+                    <button class="secondary-button">Select Explorer</button>
+                </div>
+                
+                <div class="membership-card featured">
+                    <div class="featured-badge">Highly Impactful</div>
+                    <h3 class="plan-name">Guardian</h3>
+                    <div class="plan-price">$45<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Everything in Explorer plan</li>
+                        <li>Access to live field webcams</li>
+                        <li>Annual printed wildlife guidebook</li>
+                        <li>Quarterly Q&A with field researchers</li>
+                        <li>Sponsor 1 acre of habitat restoration</li>
+                        <li>Eco-friendly welcome package</li>
+                    </ul>
+                    <button class="cta-button">Become a Guardian</button>
+                </div>
+                
+                <div class="membership-card">
+                    <h3 class="plan-name">Champion</h3>
+                    <div class="plan-price">$120<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Everything in Guardian plan</li>
+                        <li>Direct impact progress reports</li>
+                        <li>Fund a field research tracking collar</li>
+                        <li>Priority invitations to virtual summits</li>
+                        <li>Sponsor 5 acres of safe habitat</li>
+                        <li>Dedicated field liaison contact</li>
+                    </ul>
+                    <button class="secondary-button">Select Champion</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Stand Up for the Wild</h2>
+            <p>Every individual effort makes a difference. Join our global network of advocates working daily to safeguard endangered habitats and vulnerable species from extinction.</p>
+            <button class="cta-button">Join the Conservation Alliance</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon"><i class="fas fa-paw"></i></div>
+                        <div class="logo-text">Fauna<span>Flora</span></div>
+                    </div>
+                    <p style="margin-top: 20px; color: #b7e4c7;">A global organization dedicated to documenting, understanding, and preserving the marvelous animal kingdom.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Species Directory</a></li>
+                        <li><a href="#">Virtual Tours</a></li>
+                        <li><a href="#">Current Projects</a></li>
+                        <li><a href="#">Scientific Journals</a></li>
+                        <li><a href="#">Documentaries</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Get Involved</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Volunteer Programs</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                        <li><a href="#">Eco-Travel</a></li>
+                        <li><a href="#">Campaigns</a></li>
+                        <li><a href="#">Donate</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Vision</a></li>
+                        <li><a href="#">Team of Experts</a></li>
+                        <li><a href="#">Annual Reports</a></li>
+                        <li><a href="#">Media Kit</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 FaunaFlora Organization. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            
+            // Adjust for mobile
+            if (window.innerWidth <= 768) {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '80px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                    
+                    const navItems = document.querySelectorAll('.nav-links li');
+                    navItems.forEach(item => {
+                        item.style.margin = '10px 0';
+                    });
+                }
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Testimonials / Voices slider data
+        const testimonials = [
+            {
+                text: "Protecting wildlife is not merely an ethical duty; it is essential to keeping Earth's complex ecological systems balanced. When we lose a species, we lose a thread in the fabric of life.",
+                name: "Dr. Jonathan Reed",
+                position: "Wildlife Ecologist, EarthTrust",
+                initials: "JR"
+            },
+            {
+                text: "Capturing the raw beauty of these creatures in their undisturbed habitats reminds us of what we stand to lose if we do not act immediately to protect their migratory paths.",
+                name: "Elena Rostova",
+                position: "Conservation Photographer",
+                initials: "ER"
+            },
+            {
+                text: "Through community-led conservation programs, we have shown that human livelihoods and rich biodiversity can successfully flourish alongside one another.",
+                name: "David Kiptoo",
+                position: "Field Ranger, Maasai Mara Initiative",
+                initials: "DK"
+            }
+        ];
+        
+        let currentTestimonial = 0;
+        const testimonialElement = document.querySelector('.testimonial');
+        
+        function rotateTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }
+        
+        function updateTestimonial() {
+            const testimonial = testimonials[currentTestimonial];
+            testimonialElement.innerHTML = `
+                <div class="testimonial-text">"${testimonial.text}"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">${testimonial.initials}</div>
+                    <div class="author-info">
+                        <h4>${testimonial.name}</h4>
+                        <p>${testimonial.position}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(rotateTestimonial, 5000);
+        
+        // CTA button interactions
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Thank you for your interest in FaunaFlora! In a live website, this would direct you to our registration and signup portal.');
+            });
+        });
+        
+        // Membership selection interactions
+        document.querySelectorAll('.membership-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const planName = this.closest('.membership-card').querySelector('.plan-name').textContent;
+                alert(`You selected the ${planName} level. In a live implementation, you would be redirected to a secure payment processing portal.`);
+            });
+        });
+    </script>
+</body>
+</html>
